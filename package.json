@@ -1,0 +1,36 @@
+{
+  "name": "event-administration-service",
+  "version": "1.0.0",
+  "description": "Service to administer club events",
+  "main": "server.js",
+  "scripts": {
+    "start_test": "NODE_ENV=test nodemon src/server.js",
+    "test": "NODE_ENV=test mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stigbd/event-administration-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stigbd/event-administration-service/issues"
+  },
+  "homepage": "https://github.com/stigbd/event-administration-service#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "dirty-chai": "^2.0.1",
+    "eslint": "^4.12.0",
+    "mocha": "^4.0.1"
+  },
+  "dependencies": {
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "express-jwt": "^5.3.0",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.5",
+    "morgan": "^1.9.0"
+  }
+}
