@@ -118,8 +118,7 @@ describe('/event', () => {
         res.should.have.status(200)
         res.should.be.json()
         res.body.should.be.an('object')
-
-        // should test for a list of races
+        Object.keys(res.body).length.should.equal(2)
       })
       .catch(err => {
         console.error(err)
