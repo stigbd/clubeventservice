@@ -52,6 +52,26 @@ app.get('/', (req, res) => {
   res.status(200).json({'message' : 'hello world, from event-administration-service'})
 })
 
+// Get a list of events
+app.get('/event', (req, res) => {
+  Event.find({}, function (err, events) {
+    if (err) {
+      return res.sendStatus(500)
+    }
+    var eventMap = {}
+    events.forEach(function (event) {
+      var payload = {
+        id: event.id,
+        name: event.name,
+        date: event.date,
+        multiRace: event.multiRace
+      }
+      eventMap[event._id] = payload
+    })
+    res.send(eventMap)
+  })
+})
+
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
     res.status(401).send({'message': 'Invalid token'})
@@ -60,4 +80,4 @@ app.use(function (err, req, res, next) {
 })
 
 app.listen(process.env.PORT)
-console.log('Listening on ', process.env.HOST + ':' + process.env.PORT)
+console.log('Listening on ', process.env.SCHEME + '://' + process.env.HOST + ':' + process.env.PORT)
