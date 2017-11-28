@@ -1,7 +1,7 @@
 'use strict'
 
 let mongoose = require('mongoose')
-let Event = require('../src/models/event')
+let Event = require('../src/models/competition')
 var chai = require('chai')
 var chaiHttp = require('chai-http')
 
@@ -66,46 +66,46 @@ describe('/', () => {
   })
 })
 
-describe('/event', () => {
-  describe('GET /event', () => {
-    let eventId1, eventId2
+describe('/competition', () => {
+  describe('GET /competition', () => {
+    let competitionId1, competitionId2
     before(function (done) {
-      let event1 = new Event({
+      let competition1 = new Event({
         name: 'Event One',
         date: new Date(2017, 7, 14),
         multiRace: false
       })
-      let event2 = new Event({
+      let competition2 = new Event({
         name: 'Event Two',
         date: new Date(2017, 7, 14),
         multiRace: false
       })
 
-      event1.save(function (err) {
+      competition1.save(function (err) {
         if (err) {
           console.error(err)
           throw err
         }
-        eventId1 = event1.id
+        competitionId1 = competition1.id
       })
-      event2.save(function (err) {
+      competition2.save(function (err) {
         if (err) {
           console.error(err)
           throw err
         }
-        eventId2 = event2.id
+        competitionId2 = competition2.id
         done()
       })
     })
 
     after(function (done) {
-      Event.findByIdAndRemove(eventId1, function (err) {
+      Event.findByIdAndRemove(competitionId1, function (err) {
         if (err) {
           console.error(err)
           throw err
         }
       })
-      Event.findByIdAndRemove(eventId2, function (err) {
+      Event.findByIdAndRemove(competitionId2, function (err) {
         if (err) {
           console.error(err)
           throw err
@@ -114,9 +114,9 @@ describe('/event', () => {
       })
     })
 
-    it('should return status code 200 and a list of events when GET /event', () => {
+    it('should return status code 200 and a list of competitions when GET /competition', () => {
       return chai.request(url)
-        .get('/event')
+        .get('/competition')
         .then(res => {
           res.should.have.status(200)
           res.should.be.json()
@@ -129,18 +129,18 @@ describe('/event', () => {
         })
     })
   })
-  describe('POST /event', () => {
+  describe('POST /competition', () => {
     it('should return status code 204 and a location header when good jwt')
     it('should return status code 401 when bad jwt')
   })
-  describe('/event/contender', () => {
-    describe('GET /event/:eventId/contender', () => {
-      it('should return status code 200 and a list of contenders in an event when GET /event/:eventId/contender')
+  describe('/competition/competitor', () => {
+    describe('GET /competition/:competitionId/competitor', () => {
+      it('should return status code 200 and a list of competitors in an competition when GET /competition/:competitionId/competitor')
     })
   })
-  describe('/event/:eventId/race', () => {
-    describe('GET /event/:eventId/race', () => {
-      it('should return status code 200 and a list of races in an event when GET /event/:eventId/race')
+  describe('/competition/:competitionId/race', () => {
+    describe('GET /competition/:competitionId/race', () => {
+      it('should return status code 200 and a list of races in an competition when GET /competition/:competitionId/race')
     })
   })
 })

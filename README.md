@@ -1,8 +1,8 @@
-# event-administration-service
+# competition-administration-service
 
-Service to administer events
+Service to administer competitions
 
 ## Event
-An event may be one or more races, where a race is some competition that is dedicated to one class of contenders.
+An competition may be one or more races, where a race is some competition that is dedicated to one class of competitors.
 
-A race is given a startlist and produces a result, which is an ordering of the contenders.
+A race is given a startlist and produces a result, which is an ordering of the competitors.

@@ -6,7 +6,7 @@ let app = express()
 let morgan = require('morgan')
 let mongoose = require('mongoose')
 let bodyParser = require('body-parser')
-let Event = require('./models/event')
+let Event = require('./models/competition')
 require('dotenv').config()
 
 app.use(bodyParser.json())
@@ -41,26 +41,26 @@ mongoose.connect(uri, options)
 
 // Get root
 app.get('/', (req, res) => {
-  res.status(200).json({'message': 'hello world, from event-administration-service'})
+  res.status(200).json({'message': 'hello world, from competition-administration-service'})
 })
 
-// Get a list of events
-app.get('/event', (req, res) => {
-  Event.find({}, function (err, events) {
+// Get a list of competitions
+app.get('/competition', (req, res) => {
+  Event.find({}, function (err, competitions) {
     if (err) {
       return res.sendStatus(500)
     }
-    var eventMap = {}
-    events.forEach(function (event) {
+    var competitionMap = {}
+    competitions.forEach(function (competition) {
       var payload = {
-        id: event.id,
-        name: event.name,
-        date: event.date,
-        multiRace: event.multiRace
+        id: competition.id,
+        name: competition.name,
+        date: competition.date,
+        multiRace: competition.multiRace
       }
-      eventMap[event._id] = payload
+      competitionMap[competition._id] = payload
     })
-    res.send(eventMap)
+    res.send(competitionMap)
   })
 })
 

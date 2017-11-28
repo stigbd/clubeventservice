@@ -11,6 +11,6 @@ module.exports = mongoose.model('Event', new Schema({
     type: Date
   },
   classes: [{ type: Schema.Types.ObjectId, ref: 'Class' }],
-  contenders: [{ type: Schema.Types.ObjectId, ref: 'Contender' }],
+  competitors: [{ type: Schema.Types.ObjectId, ref: 'Contender' }],
   multiRace: Boolean
 }))
