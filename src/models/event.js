@@ -1,6 +1,7 @@
 'use strict'
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
+mongoose.Promise = global.Promise
 
 module.exports = mongoose.model('Event', new Schema({
   name: {

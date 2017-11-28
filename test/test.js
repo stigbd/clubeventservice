@@ -1,7 +1,6 @@
 'use strict'
 
 let mongoose = require('mongoose')
-mongoose.Promise = global.Promise
 let Event = require('../src/models/event')
 var chai = require('chai')
 var chaiHttp = require('chai-http')
@@ -14,23 +13,30 @@ chai.use(dirtyChai)
 
 let url = process.env.SCHEME + '://' + process.env.HOST + ':' + process.env.PORT
 
-let dbConnectionString = 'mongodb://' +
+let promiseLib = global.Promise
+let uri = 'mongodb://' +
 process.env.DBHOST +
 ':' +
 process.env.DBPORT +
 '/' +
 process.env.TEST_DATABASE
 
+var options = {
+  useMongoClient: true,
+  promiseLibrary: promiseLib
+}
+
 before(function (done) {
-  mongoose.connect(dbConnectionString, {useMongoClient: true}, function (err) {
-    if (err) {
-      console.error('Error connecting to mongodb: ', err.message)
-    } else {
-      console.log('Connected to the following db: ', dbConnectionString)
-    }
-    console.log('Testing against server at ' + url)
-    done()
-  })
+  mongoose.connect(uri, options)
+    .then(() => {
+      console.log('Connected to the following db: ' + uri)
+    })
+    .catch(err => {
+      console.error('Error while trying to connect with mongodb')
+      throw err
+    })
+  console.log('Testing against server at ' + url)
+  done()
 })
 
 after(function (done) {

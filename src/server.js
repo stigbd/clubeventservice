@@ -13,12 +13,13 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(morgan('combined'))
 app.use(cors())
-mongoose.Promise = global.Promise
+
+var promiseLib = global.Promise
 
 // Set up mongodb connection
-let dbConnectionString
+let uri
 if (process.env.NODE_ENV === 'test') {
-  dbConnectionString =
+  uri =
   'mongodb://' +
   process.env.DBHOST +
   ':' +
@@ -27,7 +28,7 @@ if (process.env.NODE_ENV === 'test') {
   process.env.TEST_DATABASE
 }
 if (process.env.NODE_ENV !== 'test') {
-  dbConnectionString =
+  uri =
   'mongodb://' +
   process.env.DBHOST +
   ':' +
@@ -35,14 +36,19 @@ if (process.env.NODE_ENV !== 'test') {
   '/' +
   process.env.DATABASE
 }
-mongoose.connect(dbConnectionString, {useMongoClient: true}, function (err) {
-  if (err) {
-    console.error('Error connecting to mongodb: ', err.message)
-  } else {
-    console.log('Connected to the following db: ', dbConnectionString)
-  }
-})
+var options = {
+  useMongoClient: true,
+  promiseLibrary: promiseLib
+}
 
+mongoose.connect(uri, options)
+  .then(() => {
+    console.log('Connected to the following db: ' + uri)
+  })
+  .catch(err => {
+    console.error('Error while trying to connect with mongodb')
+    throw err
+  })
 // ===== Public Routes =====
 
 // Get root
