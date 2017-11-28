@@ -10,6 +10,10 @@ module.exports = mongoose.model('Event', new Schema({
   date: {
     type: Date
   },
+  format: {
+    type: Schema.Types.ObjectId,
+    ref: 'Format'
+  },
   classes: [{ type: Schema.Types.ObjectId, ref: 'Class' }],
   competitors: [{ type: Schema.Types.ObjectId, ref: 'Contender' }],
   multiRace: Boolean
