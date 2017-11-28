@@ -18,24 +18,12 @@ var promiseLib = global.Promise
 
 // Set up mongodb connection
 let uri
+var db = process.env.DATABASE
 if (process.env.NODE_ENV === 'test') {
-  uri =
-  'mongodb://' +
-  process.env.DBHOST +
-  ':' +
-  process.env.DBPORT +
-  '/' +
-  process.env.TEST_DATABASE
+  db = process.env.TEST_DATABASE
 }
-if (process.env.NODE_ENV !== 'test') {
-  uri =
-  'mongodb://' +
-  process.env.DBHOST +
-  ':' +
-  process.env.DBPORT +
-  '/' +
-  process.env.DATABASE
-}
+uri = 'mongodb://' + process.env.DBHOST + ':' + process.env.DBPORT + '/' + db
+
 var options = {
   useMongoClient: true,
   promiseLibrary: promiseLib
