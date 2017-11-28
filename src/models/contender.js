@@ -13,7 +13,7 @@ module.exports = mongoose.model('Contender', new Schema({
     unique: true
   },
   birthdate: {
-    type: Date,
+    type: Date
   },
   gender: {
     type: String,

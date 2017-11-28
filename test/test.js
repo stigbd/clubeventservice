@@ -5,7 +5,6 @@ mongoose.Promise = global.Promise
 let Event = require('../src/models/event')
 var chai = require('chai')
 var chaiHttp = require('chai-http')
-var jwt = require('jsonwebtoken')
 
 let should = chai.should()
 require('dotenv').config()
@@ -45,27 +44,25 @@ after(function (done) {
 
 describe('/', () => {
   describe('GET /', () => {
-
     it('should return status code 200 when GET /', () => {
       return chai.request(url)
-      .get('/')
-      .then(res => {
-        res.should.have.status(200)
-        res.should.be.json()
-        res.body.should.have.property('message')
-      })
-      .catch(err => {
-        console.error(err)
-        throw err // Re-throw the error if the test should fail when an error happens
-      })
+        .get('/')
+        .then(res => {
+          res.should.have.status(200)
+          res.should.be.json()
+          res.body.should.have.property('message')
+        })
+        .catch(err => {
+          console.error(err)
+          throw err // Re-throw the error if the test should fail when an error happens
+        })
     })
   })
 })
 
 describe('/event', () => {
   describe('GET /event', () => {
-
-    let eventId1, eventId2;
+    let eventId1, eventId2
     before(function (done) {
       let event1 = new Event({
         name: 'Event One',
@@ -113,17 +110,17 @@ describe('/event', () => {
 
     it('should return status code 200 and a list of events when GET /event', () => {
       return chai.request(url)
-      .get('/event')
-      .then(res => {
-        res.should.have.status(200)
-        res.should.be.json()
-        res.body.should.be.an('object')
-        Object.keys(res.body).length.should.equal(2)
-      })
-      .catch(err => {
-        console.error(err)
-        throw err // Re-throw the error if the test should fail when an error happens
-      })
+        .get('/event')
+        .then(res => {
+          res.should.have.status(200)
+          res.should.be.json()
+          res.body.should.be.an('object')
+          Object.keys(res.body).length.should.equal(2)
+        })
+        .catch(err => {
+          console.error(err)
+          throw err // Re-throw the error if the test should fail when an error happens
+        })
     })
   })
   describe('POST /event', () => {

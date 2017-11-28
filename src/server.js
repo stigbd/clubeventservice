@@ -7,8 +7,6 @@ let morgan = require('morgan')
 let mongoose = require('mongoose')
 let bodyParser = require('body-parser')
 let Event = require('./models/event')
-let jsonwebtoken = require('jsonwebtoken')
-let jwt = require('express-jwt')
 require('dotenv').config()
 
 app.use(bodyParser.json())
@@ -49,7 +47,7 @@ mongoose.connect(dbConnectionString, {useMongoClient: true}, function (err) {
 
 // Get root
 app.get('/', (req, res) => {
-  res.status(200).json({'message' : 'hello world, from event-administration-service'})
+  res.status(200).json({'message': 'hello world, from event-administration-service'})
 })
 
 // Get a list of events
