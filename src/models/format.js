@@ -12,5 +12,8 @@ module.exports = mongoose.model('Format', new Schema({
   startProcedure: {
     type: String,
     enum: ['Interval', 'Mass', 'Pursuit', 'Heat']
+  },
+  ICRRef: {
+    type: String
   }
 }))
