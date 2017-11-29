@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 mongoose.Promise = global.Promise
 
-module.exports = mongoose.model('Contender', new Schema({
+module.exports = mongoose.model('Competitor', new Schema({
   name: {
     type: String,
     unique: true

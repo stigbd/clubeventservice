@@ -6,7 +6,7 @@ let app = express()
 let morgan = require('morgan')
 let mongoose = require('mongoose')
 let bodyParser = require('body-parser')
-let Event = require('./models/competition')
+let Competition = require('./models/competition')
 require('dotenv').config()
 
 app.use(bodyParser.json())
@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
 
 // Get a list of competitions
 app.get('/competition', (req, res) => {
-  Event.find({}, function (err, competitions) {
+  Competition.find({}, function (err, competitions) {
     if (err) {
       return res.sendStatus(500)
     }

@@ -3,7 +3,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 mongoose.Promise = global.Promise
 
-module.exports = mongoose.model('Event', new Schema({
+module.exports = mongoose.model('Competition', new Schema({
   name: {
     type: String
   },
@@ -15,6 +15,6 @@ module.exports = mongoose.model('Event', new Schema({
     ref: 'Format'
   },
   classes: [{ type: Schema.Types.ObjectId, ref: 'Class' }],
-  competitors: [{ type: Schema.Types.ObjectId, ref: 'Contender' }],
+  competitors: [{ type: Schema.Types.ObjectId, ref: 'Competitor' }],
   multiRace: Boolean
 }))

@@ -1,7 +1,7 @@
 'use strict'
 
 let mongoose = require('mongoose')
-let Event = require('../src/models/competition')
+let Competition = require('../src/models/competition')
 var chai = require('chai')
 var chaiHttp = require('chai-http')
 
@@ -70,13 +70,13 @@ describe('/competition', () => {
   describe('GET /competition', () => {
     let competitionId1, competitionId2
     before(function (done) {
-      let competition1 = new Event({
-        name: 'Event One',
+      let competition1 = new Competition({
+        name: 'Competition One',
         date: new Date(2017, 7, 14),
         multiRace: false
       })
-      let competition2 = new Event({
-        name: 'Event Two',
+      let competition2 = new Competition({
+        name: 'Competition Two',
         date: new Date(2017, 7, 14),
         multiRace: false
       })
@@ -99,13 +99,13 @@ describe('/competition', () => {
     })
 
     after(function (done) {
-      Event.findByIdAndRemove(competitionId1, function (err) {
+      Competition.findByIdAndRemove(competitionId1, function (err) {
         if (err) {
           console.error(err)
           throw err
         }
       })
-      Event.findByIdAndRemove(competitionId2, function (err) {
+      Competition.findByIdAndRemove(competitionId2, function (err) {
         if (err) {
           console.error(err)
           throw err
