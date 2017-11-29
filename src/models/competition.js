@@ -5,7 +5,9 @@ mongoose.Promise = global.Promise
 
 module.exports = mongoose.model('Competition', new Schema({
   name: {
-    type: String
+    type: String,
+    required: true,
+    unique: true
   },
   date: {
     type: Date
@@ -14,6 +16,7 @@ module.exports = mongoose.model('Competition', new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Format'
   },
+  schedule: { type: Schema.Types.ObjectId, ref: 'Schedule' },
   classes: [{ type: Schema.Types.ObjectId, ref: 'Class' }],
   competitors: [{ type: Schema.Types.ObjectId, ref: 'Competitor' }],
   multiRace: Boolean

@@ -7,6 +7,7 @@ mongoose.Promise = global.Promise
 module.exports = mongoose.model('Competitor', new Schema({
   name: {
     type: String,
+    required: true,
     unique: true
   },
   bib: {
@@ -14,10 +15,12 @@ module.exports = mongoose.model('Competitor', new Schema({
     unique: true
   },
   birthdate: {
-    type: Date
+    type: Date,
+    required: true
   },
   gender: {
     type: String,
+    required: true,
     enum: ['FEMALE', 'MALE', 'MIXED']
   }
 }))

@@ -7,6 +7,7 @@ mongoose.Promise = global.Promise
 module.exports = mongoose.model('Class', new Schema({
   name: {
     type: String,
+    required: true,
     unique: true
   },
   age: {

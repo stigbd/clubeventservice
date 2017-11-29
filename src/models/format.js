@@ -5,7 +5,9 @@ mongoose.Promise = global.Promise
 
 module.exports = mongoose.model('Format', new Schema({
   name: {
-    type: String
+    type: String,
+    required: true,
+    unique: true
   },
   startProcedure: {
     type: String,
