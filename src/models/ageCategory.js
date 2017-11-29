@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 mongoose.Promise = global.Promise
 
-module.exports = mongoose.model('Class', new Schema({
+module.exports = mongoose.model('AgeCategory', new Schema({
   name: {
     type: String,
     required: true,
@@ -17,4 +17,5 @@ module.exports = mongoose.model('Class', new Schema({
     type: String,
     enum: ['FEMALE', 'MALE', 'MIXED']
   }
+  // TODO add a virtual field that provides the birthyear of the class depending on the date of the competition.
 }))

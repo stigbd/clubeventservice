@@ -133,14 +133,16 @@ describe('/competition', () => {
     it('should return status code 204 and a location header when good jwt')
     it('should return status code 401 when bad jwt')
   })
-  describe('/competition/competitor', () => {
-    describe('GET /competition/:competitionId/competitor', () => {
-      it('should return status code 200 and a list of competitors in an competition when GET /competition/:competitionId/competitor')
-    })
+})
+
+describe('/competition/:competitionId/schedule', () => {
+  describe('GET /competition/:competitionId/schedule', () => {
+    it('should return status code 200 and a list of races in an competition when GET /competition/:competitionId/race')
   })
-  describe('/competition/:competitionId/race', () => {
-    describe('GET /competition/:competitionId/race', () => {
-      it('should return status code 200 and a list of races in an competition when GET /competition/:competitionId/race')
-    })
+})
+
+describe('/competition/:competitionId/competitor', () => {
+  describe('GET /competition/:competitionId/competitor', () => {
+    it('should return status code 200 and a list of competitors in an competition when GET /competition/:competitionId/competitor')
   })
 })

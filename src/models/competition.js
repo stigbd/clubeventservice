@@ -17,7 +17,7 @@ module.exports = mongoose.model('Competition', new Schema({
     ref: 'Format'
   },
   schedule: { type: Schema.Types.ObjectId, ref: 'Schedule' },
-  classes: [{ type: Schema.Types.ObjectId, ref: 'Class' }],
+  ageCategories: [{ type: Schema.Types.ObjectId, ref: 'AgeCategory' }],
   competitors: [{ type: Schema.Types.ObjectId, ref: 'Competitor' }],
   multiRace: Boolean
 }))

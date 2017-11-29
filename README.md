@@ -4,6 +4,9 @@ Service to administer competitions
 
 A competition may be one or more races. The competition is dedicated to one class of competitors.
 
+## Age categories (341.1)
+In Norway the competition year is 1st of May - 30th of April 
+
 ## Formats (310)
 Competition formats:
 -   Interval Start (321),
