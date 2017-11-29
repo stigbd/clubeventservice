@@ -1,0 +1,10 @@
+[
+  {"name": "Interval Start", "startProcedure": "Interval", "ICRRef": "321"},
+  {"name": "Mass start", "startProcedure": "Mass", "ICRRef": "322"},
+  {"name": "Popular", "ICRRef": "380-90"},
+  {"name": "Skiathlon", "startProcedure": "Mass", "ICRRef": "323"},
+  {"name": "Pursuit", "startProcedure": "Pursuit", "ICRRef": "324"},
+  {"name": "Relay", "startProcedure": "Mass", "ICRRef": "327"},
+  {"name": "Individual sprint", "startProcedure": "Heat", "ICRRef": "325"},
+  {"name": "Team sprint", "startProcedure": "Mass", "ICRRef": "326"}
+]
