@@ -1,1 +1,1 @@
--  [ ] Port i url should be configurable
+-   [ ] Port in url should be configurable

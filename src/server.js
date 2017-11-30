@@ -68,8 +68,10 @@ loadJsonFile(file)
   // routes
 var format = require('./routes/format')
 var competition = require('./routes/competition')
+var ageCategory = require('./routes/ageCategory')
 app.use('/', format)
 app.use('/', competition)
+app.use('/', ageCategory)
 // ===== Public Routes =====
 
 // Get root
