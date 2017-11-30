@@ -6,9 +6,7 @@ let app = express()
 let morgan = require('morgan')
 let mongoose = require('mongoose')
 let bodyParser = require('body-parser')
-let Format = require('./models/format')
 require('dotenv').config()
-var path = require('path')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -33,45 +31,23 @@ var options = {
 mongoose.connect(uri, options)
   .then(() => {
     console.log('Connected to the following db: ' + uri)
+    // ===== Load default data ====
+    var formatLoader = require('./etl/formatLoader')
+    formatLoader.loadFormats()
   })
   .catch(err => {
     console.error('Error while trying to connect with mongodb')
     throw err
   })
 
-// ===== Load default data ====
-// Loading formats:
-const loadJsonFile = require('load-json-file')
-var file = path.join(__dirname, '/data/formats.json')
-loadJsonFile(file)
-  .then(formats => {
-    for (var format of formats) {
-      console.log(format)
-      var data = new Format(format)
-      // ---- save logic start
-      data
-        .save()
-        .then(saved => console.log('saved', saved))
-        .catch(err => {
-          if (err.code === 11000) {
-            return console.log('Object already saved')
-          }
-          console.error('err while saving', err)
-        })
-      // ---- save logic end
-    }
-  })
-  .catch(err => {
-    console.error(err)
-  })
-
-  // routes
+// routes
 var format = require('./routes/format')
 var competition = require('./routes/competition')
 var ageCategory = require('./routes/ageCategory')
 app.use('/', format)
 app.use('/', competition)
 app.use('/', ageCategory)
+
 // ===== Public Routes =====
 
 // Get root

@@ -1,1 +1,3 @@
--   [ ] Refactor routes out of server.js
+-   [X] Refactor routes out of server.js
+-   [X] Refactor initial data load out of server.js. Load initial data after connect to mongodb
+-   [ ] Handle both single and batch post of e.g. competitors, check <https://stackoverflow.com/questions/35488386/post-multiple-json-objects-simultaneously-with-express-and-postman>
