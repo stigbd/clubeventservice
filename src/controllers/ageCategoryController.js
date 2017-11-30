@@ -11,8 +11,7 @@ module.exports = {
         var payload = {
           id: ageCategory.id,
           name: ageCategory.name,
-          age: ageCategory.age,
-          gender: ageCategory.gender
+          age: ageCategory.age
         }
         ageCategoryMap[ageCategory._id] = payload
       })
