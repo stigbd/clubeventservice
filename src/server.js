@@ -34,6 +34,8 @@ mongoose.connect(uri, options)
     // ===== Load default data ====
     var formatLoader = require('./etl/formatLoader')
     formatLoader.loadFormats()
+    var ageCategoryLoader = require('./etl/ageCategoryLoader')
+    ageCategoryLoader.loadAgeCategory()
   })
   .catch(err => {
     console.error('Error while trying to connect with mongodb')
