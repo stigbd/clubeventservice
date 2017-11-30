@@ -6,7 +6,6 @@ let app = express()
 let morgan = require('morgan')
 let mongoose = require('mongoose')
 let bodyParser = require('body-parser')
-let Competition = require('./models/competition')
 let Format = require('./models/format')
 require('dotenv').config()
 var path = require('path')
@@ -66,6 +65,11 @@ loadJsonFile(file)
     console.error(err)
   })
 
+  // routes
+var format = require('./routes/format')
+var competition = require('./routes/competition')
+app.use('/', format)
+app.use('/', competition)
 // ===== Public Routes =====
 
 // Get root
@@ -73,26 +77,7 @@ app.get('/', (req, res) => {
   res.status(200).json({'message': 'hello world, from competition-administration-service'})
 })
 
-// Get a list of competitions
-app.get('/competition', (req, res) => {
-  Competition.find({}, function (err, competitions) {
-    if (err) {
-      return res.sendStatus(500)
-    }
-    var competitionMap = {}
-    competitions.forEach(function (competition) {
-      var payload = {
-        id: competition.id,
-        name: competition.name,
-        date: competition.date,
-        multiRace: competition.multiRace
-      }
-      competitionMap[competition._id] = payload
-    })
-    res.send(competitionMap)
-  })
-})
-
+// ====== Error handling =========
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
     res.status(401).send({'message': 'Invalid token'})

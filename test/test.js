@@ -48,6 +48,7 @@ after(function (done) {
   })
 })
 
+// /
 describe('/', () => {
   describe('GET /', () => {
     it('should return status code 200 when GET /', () => {
@@ -60,6 +61,46 @@ describe('/', () => {
         })
         .catch(err => {
           console.error(err)
+          throw err // Re-throw the error if the test should fail when an error happens
+        })
+    })
+  })
+})
+
+// Testing that default values are in place
+describe('/format', () => {
+  describe('GET /format', () => {
+    it('should return status code 200 and a list of formats when GET /format', () => {
+      return chai.request(url)
+        .get('/format')
+        .then(res => {
+          res.should.have.status(200)
+          res.should.be.json()
+          res.body.should.be.an('object')
+          Object.keys(res.body).length.should.be.at.least(2)
+        })
+        .catch(err => {
+          // console.error(err)
+          throw err // Re-throw the error if the test should fail when an error happens
+        })
+    })
+  })
+})
+
+// Testing that default values are in place
+describe('/ageCategory', () => {
+  describe('GET /ageCategory', () => {
+    it('should return status code 200 and a list of ageCategories when GET /ageCategory', () => {
+      return chai.request(url)
+        .get('/ageCategory')
+        .then(res => {
+          res.should.have.status(200)
+          res.should.be.json()
+          res.body.should.be.an('object')
+          Object.keys(res.body).length.should.be.at.least(2)
+        })
+        .catch(err => {
+          // console.error(err)
           throw err // Re-throw the error if the test should fail when an error happens
         })
     })
